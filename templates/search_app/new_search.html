@@ -1,50 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% if posts %}
     <h2 style="text-align: center">{{ searched_phrase | title }}</h2>
     <div class="row">
+        {% for post in posts %}
         <div class="col s4">
             <div class="card">
                 <div class="card-image">
-                    <a href="#"><img src="https://cataas.com/cat" alt=""></a>
+                    <a href="{{ post.1 }}"><img src="{{ post.3 }}" alt="post img"></a>
                 </div>
                 <div class="card-content">
-                    <p>TEST</p>
+                    <p>{{ post.0 }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="#">View listing: Price TEST PRICE</a>
+                    <a href="{{ post.1 }}">View listing: Price {{ post.2 }}}}</a>
                 </div>
             </div>
         </div>
-
-        <div class="col s4">
-            <div class="card">
-                <div class="card-image">
-                    <a href="#"><img src="https://cataas.com/cat" alt=""></a>
-                </div>
-                <div class="card-content">
-                    <p>TEST</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">View listing: Price TEST PRICE</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s4">
-            <div class="card">
-                <div class="card-image">
-                    <a href="#"><img src="https://cataas.com/cat" alt=""></a>
-                </div>
-                <div class="card-content">
-                    <p>TEST</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">View listing: Price TEST PRICE</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
-
+{% else %}
+    <h2 style="text-align: center">Sorry, no results found for "{{ searched_phrase }}"</h2>
+{% endif %}
 {% endblock content %}
 
